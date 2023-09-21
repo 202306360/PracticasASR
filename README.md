@@ -17,7 +17,11 @@ Creamos las dos instancias de VM, por un lado la que es el servidor y por otro l
 Ambas máquinas tienen dirección IP privada dentro de la subnetwork y la máquina de salto es la única que tiene dirección IP pública.
 Para esta solución, habilitamos las siguientes reglas de Firewall:
 1) Se habilita el tráfico ssh desde la dirección IP de nuestro pc hasta el jump-server a través del puerto 22.
-2) Se habilita el tráfico interno entre las máquinas.
+2) Se habilita el tráfico interno entre las máquinas, esto para comprobar que existía conectividad entre ambas y poder hacer un ping.
+3) Se deshabilita la regla anterior y se habilita únicamente el tráfico TCP desde el jump-server al http-server.
+4) 
+   <img width="790" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/abacc4f3-7d9b-47e6-88fc-75d18f3be8ae">
+
    
  <img width="757" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/e237223b-8d8c-4306-b14f-7cd310da1a62">
 
@@ -76,7 +80,13 @@ LOAD BALANCER
 
 PREGUNTAS:
 ¿Qué ventajas e incovenientes tiene hacer https offloading en el balanceador?
+El https offloading es una técnica que permite que el balanceador de carga sea el que se encarga de gestionar las conexiones HTTPS en lugar de que sea el server final el que lo haga.
+Como ventaja: se reduce la carga en el servidor porque ya no tienen que hacer el cifrado SSL/TLS
+Como desventaja: Al deshabilitar el cifrado SSL/TLS la comunicación entre balanceador y servidor no está cifrada por lo qu eese tráfico interno podría ser manipulado o interceptado. Por esta razón se tendrían que tomar otras medidas para proteger esta red interna.
+Además, se tiene que tener seguridad en el balanceador, pues este va a tener acceso a los datos sin cifrar.
+
 ¿Qué pasos adicionales has tenido que hacer para que la máquina pueda salir a internet para poder instalar el servidor nginx?
+He tenido que habilitar el NAT como router dentro de la red. SE CONECTA AUTOMÁTICAMENTE EL NAT A EL HTTP SERVER? LA RUTA SE HACE AUTOMÁTICA??
 
 Parte 2.2 Proteger nuestra máquina de ataques SQL Injection, Cross Syte Scripting y restringir el tráfico sólo a paises de confianza de la UE implantando un WAF a nuestro balanceador.
 
