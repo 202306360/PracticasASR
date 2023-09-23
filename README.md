@@ -123,7 +123,40 @@ En este caso hemos creado 3 políticas
 <img width="817" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/23ab39dc-a294-4fa4-b6fd-af811cb32bf0">
 
 
+###  3ra mejora solución: zero trust 
+En esta parte, buscamos que el contenido web esté cifrado también dentro del cloud.
+La ultima parte: hacemos trabajar al engineX por el 443 y que el balanceador vaya también por el HTTPS en lugar del HTTP. Pasos a seguir:
+
+1) En primer lugar, tenemos que modificar la configuración del instance group.
+ <img width="473" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/d63abee2-7ce1-4ccd-bfe7-3c00452ac980">
+
+2) Cambiamos la configuración en el Backend del Load Balancer:
+  <img width="841" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/c0167e17-724e-4783-8826-ae99f9993726">
+
+3)  Modificamos el Health Check del Load Balancer en el Back end:
+   <img width="848" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/955ec9d2-1b89-4b5c-9e9f-f5d4ab341efb">
+
+4) Modificamos la política de Health Check del Firewall para que se ejecute sobre el P443:
+   <img width="807" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/f5127714-006e-4109-a0e1-4765f412e59f">
+
+5) Modificamos la configuración de NgineX desde la consola del server para que trabaje sobre el P443:
+Para poder cambiar la configuración del NgineX dentro del servidor, tenemos que mover los archivos .cert y .KEY al http-server.
+Una vez tengamos estos archivos, tenemos que modificar la configuracion del NgineX habilitando el parámetro ssl, e indicando las rutas a los archivos .KEY y .crt
+<img width="602" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/4fbcf2c2-b419-488a-b6a6-90b488283b05">
+
+<img width="796" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/ea765fcb-8928-4603-b308-c23fbd6c4f5e">
 
 
 
+Una vez modificada la configuración del NgniX, la actualizamos y la hacemos reload.
+Procedemos a conectarnos al localhost y nos sale un aviso de que no se reconoce el CA por lo que no se puede abrir la conexión de forma segura.
+Ejecutamos para ello el comando: curl -k https://localhost que se conecta de manera insegura, sin comprobar la autoridad del CA.
+<img width="608" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/fb2ecb7d-4527-4ba3-a3c7-3b3b4ca57882">
 
+Finalmente nos conectamos al htttps://localhost
+
+<img width="614" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/a2ca7555-2773-4aec-bcb4-af240b7ff773">
+
+
+Podemos acceder también desde el navegador:
+<img width="960" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/1ddc7cbb-b7a1-4ac7-9e79-53ab34956931">
