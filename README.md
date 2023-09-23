@@ -82,11 +82,48 @@ PREGUNTAS:
 ¿Qué ventajas e incovenientes tiene hacer https offloading en el balanceador?
 El https offloading es una técnica que permite que el balanceador de carga sea el que se encarga de gestionar las conexiones HTTPS en lugar de que sea el server final el que lo haga.
 Como ventaja: se reduce la carga en el servidor porque ya no tienen que hacer el cifrado SSL/TLS
-Como desventaja: Al deshabilitar el cifrado SSL/TLS la comunicación entre balanceador y servidor no está cifrada por lo qu eese tráfico interno podría ser manipulado o interceptado. Por esta razón se tendrían que tomar otras medidas para proteger esta red interna.
+Como desventaja: Al deshabilitar el cifrado SSL/TLS la comunicación entre balanceador y servidor no está cifrada por lo que ese tráfico interno podría ser manipulado o interceptado. Por esta razón se tendrían que tomar otras medidas para proteger esta red interna.
 Además, se tiene que tener seguridad en el balanceador, pues este va a tener acceso a los datos sin cifrar.
 
 ¿Qué pasos adicionales has tenido que hacer para que la máquina pueda salir a internet para poder instalar el servidor nginx?
 He tenido que habilitar el NAT como router dentro de la red. SE CONECTA AUTOMÁTICAMENTE EL NAT A EL HTTP SERVER? LA RUTA SE HACE AUTOMÁTICA??
 
 Parte 2.2 Proteger nuestra máquina de ataques SQL Injection, Cross Syte Scripting y restringir el tráfico sólo a paises de confianza de la UE implantando un WAF a nuestro balanceador.
+
+En primer lugar generamos el certificado a través de los comandos de SSL y lo cargamos en el servidor. EL servidor web necesita estos documentos para poder firmar peticiones HTTPS.
+![image](https://github.com/202306360/PracticasASR/assets/145692381/7e02c92b-8715-4a15-bbc1-719783e7a46b)
+
+![image](https://github.com/202306360/PracticasASR/assets/145692381/72f7ee7f-5690-4bab-8839-8c6c00c454e2)
+
+Una vez tenemos el certificado cargado, procedemos a crear el balanceador de L7.
+Configuramos en Frontend y el Backend que se configura con un grupo de instancias instance group que tenemos que crear previamente.
+Además, en el backend debemos de crear un HealthCheck mediante el cual el balanceador se asegure que el servidor está operativo. Este healthCheck se hace con una conexión TCP en el puerto 80.
+
+<img width="793" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/aa87aabf-b302-4286-994d-95d47708abe2">
+
+<img width="946" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/b2030dc3-9bd2-4d2b-9f3e-6fa0579e993d">
+
+En este punto, también configuramos el Health Check de google en el Firewall para permitir las comprobaciones desde ciertos rangos de IP externas y a través del P80:
+<img width="956" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/d6849c95-1d9e-4590-8d54-dc2ea4a9c4e3">
+
+
+De esta forma, una vez tenemos el balanceador creado, ya podemos acceder al servidor a través de internet con la dirección IP del balanceador.
+![image](https://github.com/202306360/PracticasASR/assets/145692381/a3a650f3-02bf-4893-b4d1-2e9c078662be)
+
+Si lo hacemos a través del buscador de google, observamos que por el tipo de CA que hemos utilizado, nos sale el siguiente aviso:
+![image](https://github.com/202306360/PracticasASR/assets/145692381/b90f8717-07bc-4a55-b950-ce3e8155c340)
+![image](https://github.com/202306360/PracticasASR/assets/145692381/78aeb9cc-dfd4-4a25-92d8-45cb464cc607)
+
+Ahora procedemos a configurar el WAF, a través de las políticas de Cloud Armor:
+En este caso hemos creado 3 políticas
+1)Restringimos el acceso únicamente a IPs de España.
+2)Protejemos el acceso contra SQL injection
+3)Protejemos el acceso contra Cross-Scripting
+
+<img width="817" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/23ab39dc-a294-4fa4-b6fd-af811cb32bf0">
+
+
+
+
+
 
