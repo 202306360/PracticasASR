@@ -127,14 +127,10 @@ Si lo hacemos a través del buscador de Google, observamos que debido al tipo de
 ![Aviso de seguridad](https://github.com/202306360/PracticasASR/assets/145692381/b90f8717-07bc-4a55-b950-ce3e8155c340)
 ![Aviso de seguridad](https://github.com/202306360/PracticasASR/assets/145692381/78aeb9cc-dfd4-4a25-92d8-45cb464cc607)
 
-#### 4.3-Firewall rule para permitir los Health Checks de Google:
-Habilitamos una regla en el Firewall que permita enviar los Health Checks.
-<img width="434" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/e8be0278-98b9-40ec-ab2b-43038a12274f">
 
 
 
-
-#### 4.4-Configuración del WAF:
+#### 4.3-Configuración del WAF:
 El objetivo de este apartado es proteger nuestra máquina de ataques SQL Injection, Cross-Site Scripting y restringir el tráfico solo a países de confianza de la UE implantando un WAF a nuestro balanceador.
 Ahora procedemos a configurar el WAF a través de las políticas de Cloud Armor:
 
@@ -197,3 +193,12 @@ También podemos acceder desde el navegador.
 
 ## Cuarto apartado: Posibles mejoras
 
+Otras posibles mejoras serían:
+
+1. Monitoreo y Registro Avanzados: Utiliza herramientas para observar lo que sucede en la nube,que nos pueda ayudar a detectar cualquier actividad extraña o problemas de seguridad y mantener un registro de lo que ocurre. Por ejemplo utilizando un software de seguridad o servicios en la nube que registren y analicen lo que sucede en la red. 
+
+Configuración de Backups y Restauración: Mantener copias de seguridad en caso de que ocurra cualquier problema. Se podrían programar copias periódicas y automáticas.
+
+Implementación de Seguridad a Nivel de Aplicación: Utilizando software antivirus y antimalware por ejemplo.
+
+Segmentación de Red Avanzada: Dividir la nube en distintas secciones para poder evitar que en caso de que una parte se dañe, también afecte al resto de la red.
