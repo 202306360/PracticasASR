@@ -38,6 +38,8 @@ Para permitir el acceso al jump-server desde nuestro pc hemos añadido la clave 
 <img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/1379a9bb-950d-4f70-874f-efb4e9fb2d3f">
 <img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/6b30c5c8-1d24-445a-87d2-5f147cb05d4f">
 
+5. Para comprobar el acceso desde la web, habilitamos una tercera regla de Firewall con origen la IP de nuestro pc y con destino la IP pública de la máquina http-sever. En este caso a través del protocolo TCP por el puerto 80.
+<img width="959" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/47efdadb-59c9-43c0-9b70-e4d9f9184711">
 
 
 
