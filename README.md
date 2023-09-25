@@ -114,26 +114,27 @@ Una vez tenemos el certificado cargado, procedemos a crear el balanceador de L7.
 
 ##### 4.1.1- Creación grupo de instancias:
 Nos creamos un grupo de instancias a las que se dirige el balanceador.
-<img width="803" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/3bffc9d1-4fc0-4353-ab3d-1ee3dd025a76">
+
+ ![Imagen](C18.png)
 
 Además, en el backend, debemos crear un Health Check para asegurarnos de que el servidor está operativo. Este Health Check se realiza mediante una conexión TCP en el puerto 80.
+ ![Imagen](C19.png)
 
-![Configuración del balanceador](https://github.com/202306360/PracticasASR/assets/145692381/aa87aabf-b302-4286-994d-95d47708abe2)
-![Configuración del balanceador](https://github.com/202306360/PracticasASR/assets/145692381/b2030dc3-9bd2-4d2b-9f3e-6fa0579e993d)
+ ![Imagen](C20.png)
 
 #### 4.2-Health Check del Googel Firewall:
 En este punto, también configuramos el Health Check de Google en el Firewall para permitir las comprobaciones desde ciertos rangos de IP externas a través del puerto 80.
 
-![Configuración del Firewall](https://github.com/202306360/PracticasASR/assets/145692381/d6849c95-1d9e-4590-8d54-dc2ea4a9c4e3)
+ ![Imagen](C21.png)
 
 De esta forma, una vez tenemos el balanceador creado, ya podemos acceder al servidor a través de Internet con la dirección IP del balanceador.
 
-![Acceso al servidor](https://github.com/202306360/PracticasASR/assets/145692381/a3a650f3-02bf-4893-b4d1-2e9c078662be)
+ ![Imagen](C22.png)
 
 Si lo hacemos a través del buscador de Google, observamos que debido al tipo de CA que hemos utilizado, nos sale un aviso de seguridad.
-
-![Aviso de seguridad](https://github.com/202306360/PracticasASR/assets/145692381/b90f8717-07bc-4a55-b950-ce3e8155c340)
-![Aviso de seguridad](https://github.com/202306360/PracticasASR/assets/145692381/78aeb9cc-dfd4-4a25-92d8-45cb464cc607)
+ ![Imagen](C23.png)
+ 
+  ![Imagen](C24.png)
 
 
 
@@ -142,10 +143,10 @@ Si lo hacemos a través del buscador de Google, observamos que debido al tipo de
 El objetivo de este apartado es proteger nuestra máquina de ataques SQL Injection, Cross-Site Scripting y restringir el tráfico solo a países de confianza de la UE implantando un WAF a nuestro balanceador.
 Ahora procedemos a configurar el WAF a través de las políticas de Cloud Armor:
 
-<img width="818" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/9450f733-b8c6-496d-a2bd-f9ad1fe163e2">
+ ![Imagen](C25.png)
 
 Las reglas instaladas son las siguientes:
-<img width="813" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/33a8e4e4-b8bb-43b9-bd0a-da001b457b03">
+ ![Imagen](C26.png)
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Preguntas apartado 2:**
 
@@ -165,39 +166,32 @@ La última parte consiste en hacer trabajar al Nginx por el puerto 443 y que el 
 
 
 ### 1. Modificar la configuración del instance group.
-![Configuración del instance group](https://github.com/202306360/PracticasASR/assets/145692381/d63abee2-7ce1-4ccd-bfe7-3c00452ac980)
-
+ ![Imagen](C27.png)
 ### 2. Cambiar la configuración en el Backend del Load Balancer para permitir la comunicación por el P443.
 
-![Configuración del balanceador](https://github.com/202306360/PracticasASR/assets/145692381/c0167e17-724e-4783-8826-ae99f9993726)
+ ![Imagen](C28.png)
 
 ### 3. Modificar el Health Check del Load Balancer en el Backend para que se ejecute sobre el puerto 443.
 
-![Health Check del Load Balancer](https://github.com/202306360/PracticasASR/assets/145692381/955ec9d2-1b89-4b5c-9e9f-f5d4ab341efb)
+ ![Imagen](C29.png)
 
 ### 4. Modificar la política de Health Check del Firewall para que se ejecute sobre el puerto 443.
 
-![Configuración del Firewall](https://github.com/202306360/PracticasASR/assets/145692381/f5127714-006e-4109-a0e1-4765f412e59f)
-
+ ![Imagen](C30.png)
 ### 5. Modificar la configuración de Nginx desde la consola del server para que trabaje sobre el puerto 443.
 
 Para poder cambiar la configuración del Nginx dentro del servidor, debemos mover los archivos .cert y .KEY al http-server. Una vez tengamos estos archivos, debemos modificar la configuración del Nginx habilitando el parámetro ssl e indicando las rutas a los archivos .KEY y .crt.
 
-![Configuración de Nginx](https://github.com/202306360/PracticasASR/assets/145692381/4fbcf2c2-b419-488a-b6a6-90b488283b05)
-![Configuración de Nginx](https://github.com/202306360/PracticasASR/assets/145692381/ea765fcb-8928-4603-b308-c23fbd6c4f5e)
+ ![Imagen](C31.png) ![Imagen](C32.png)
 
 Una vez modificada la configuración del Nginx, la actualizamos y la recargamos. Procedemos a conectarnos al localhost y nos sale un aviso de que no se reconoce el CA, por lo que no se puede abrir la conexión de forma segura. Ejecutamos el comando `curl -k https://localhost` para conectarnos de manera insegura, sin comprobar la autoridad del CA.
-
-![Aviso de seguridad](https://github.com/202306360/PracticasASR/assets/145692381/fb2ecb7d-4527-4ba3-a3c7-3b3b4ca57882)
-
+ ![Imagen](C33.png)
 Finalmente, nos conectamos al `https://localhost`.
 
-![Acceso al localhost](https://github.com/202306360/PracticasASR/assets/145692381/a2ca7555-2773-4aec-bcb4-af240b7ff773)
-
+ ![Imagen](C34.png)
 También podemos acceder desde el navegador.
 
-![Acceso desde el navegador](https://github.com/202306360/PracticasASR/assets/145692381/1ddc7cbb-b7a1-4ac7-9e79-53ab34956931)
-
+ ![Imagen](C35.png)
 
 ## Cuarto apartado: Posibles mejoras
 
