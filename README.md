@@ -38,6 +38,7 @@ Para permitir el acceso al jump-server desde nuestro pc hemos añadido la clave 
 
 
  ![Imagen](C6.png)
+ 
   ![Imagen](C7.png)
 
 
@@ -106,8 +107,6 @@ A continuación, procedemos a configurar el Load Balancer.
 
 #### 4.1-Generación del certificado:
 En primer lugar, generamos el certificado a través de los comandos de SSL y lo cargamos en el servidor. El servidor web necesita estos documentos para poder firmar peticiones HTTPS.
-![Generación de certificado](https://github.com/202306360/PracticasASR/assets/145692381/7e02c92b-8715-4a15-bbc1-719783e7a46b)
-![Generación de certificado](https://github.com/202306360/PracticasASR/assets/145692381/72f7ee7f-5690-4bab-8839-8c6c00c454e2)
  ![Imagen](C16.png)
   ![Imagen](C17.png)
 #### 4.1-Configuración del balanceador L7:
