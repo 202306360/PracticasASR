@@ -36,22 +36,20 @@ A continuación se incluyen las imágenes que muestran la configuración de las 
 
 Para permitir el acceso al jump-server desde nuestro pc hemos añadido la clave SSH en el "metadata" de Google Cloud. Una vez hecho esto y creadas las máquinas, ya podemos acceder al jump server desde nuestra consola de comandos. 
 
-//<img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/1379a9bb-950d-4f70-874f-efb4e9fb2d3f">
- ![Imagen](C5.jpg)
-  ![Imagen](C5.jpg)
 
-<img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/6b30c5c8-1d24-445a-87d2-5f147cb05d4f">
  ![Imagen](C6.png)
+  ![Imagen](C7.png)
+
+
+
 5. Para comprobar el acceso desde la web, habilitamos una tercera regla de Firewall con origen la IP de nuestro pc y con destino la IP pública de la máquina http-sever. En este caso a través del protocolo TCP por el puerto 80.
 
-   
+   ![Imagen](C5.jpg)  
 
  De esta manera podemos acceder desde el buscador web al servidor:  
  ![Ultima regla firewall](C4p.png.jpg)
 
 
-En la linea 39
-//<img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/1379a9bb-950d-4f70-874f-efb4e9fb2d3f">
 
 
 
@@ -66,28 +64,28 @@ En este caso, la máquina http-server solo tendrá dirección IP interna, mientr
 
 ### 1. CREACIÓN DE LA SUBNET Y MÁQUINAS VIRTUALES
 #### 1.1- Configuración de la subnet:
-![Configuración de subnet](https://github.com/202306360/PracticasASR/assets/145692381/d2a439b1-07ba-4627-ac3b-9d4ed15d2bb8)
- ![Imagen](C6.png)
+
+ ![Imagen](C8.png)
 
 #### 1.2- Configuración de la máquina http-server:
-![Máquina server](https://github.com/202306360/PracticasASR/assets/145692381/490c5498-73cd-4d4e-b02b-034613fe89b9)
- ![Imagen](C8.png)
+
+ ![Imagen](C9.png)
 #### 1.3- Configuración de la máquina jump-server:
 
-![Máquina jump-server](https://github.com/202306360/PracticasASR/assets/145692381/e486cfef-19b0-42b4-9af6-d543366be0dd)
- ![Imagen](C9.png)
+
+ ![Imagen](C10.png)
 ### 2. CONFIGURACIÓN DE LAS REGLAS DE FIREWALL
 Para este apartado, mantendremos la misma configuración que en el ejercicio anterior, por lo que al firewall de la nueva subnet creada le aplicamos las siguientes reglas:
 
 #### 2.1-Permitimos únicamente el tráfico SSH desde el jump-server al servidor-http por el puerto 22:
-![Reglas de Firewall](https://github.com/202306360/PracticasASR/assets/145692381/f8dd88d1-feea-4a9b-9704-fa49a406da73)
+ ![Imagen](C11.png)
 
 #### 2.2-Permitimos también el tráfico SSH desde mi máquina al jump-server:
-![Reglas de Firewall](https://github.com/202306360/PracticasASR/assets/145692381/cd0855f6-3575-4eb3-9c53-8ec57f971471)
+ ![Imagen](C12.png)
 
 Con estas reglas habilitadas, podemos acceder al jump-server desde nuestra IP con el comando SSH para posteriormente acceder también al http-server desde el jump-server.
 
-<img width="545" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/415a5f2a-4f8d-4a94-b36b-f935671b75b9">
+ ![Imagen](C13.png)
 
 Sin embargo, para poder descargar los archivos en el http-server, tenemos que configurar el NAT para tener acceso a internet, ya que no tenemos IP pública en la máquina http-server.
 
@@ -95,10 +93,10 @@ Sin embargo, para poder descargar los archivos en el http-server, tenemos que co
 ### 3. CONFIGURACIÓN DEL NAT
 
 #### 3.1-Habilitamos el NAT.
-![Habilitación del NAT](https://github.com/202306360/PracticasASR/assets/145692381/d41092e4-bbf5-4f2a-b083-f65df419791e)
 
+ ![Imagen](C14.png)
 Una vez tengamos el NAT ya accedemos al Http-server e instalamos el Nginx.
-<img width="960" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/4cb5f12d-1f01-4dec-b46c-2681823969e1">
+ ![Imagen](C15.png)
 
 
 
@@ -110,7 +108,8 @@ A continuación, procedemos a configurar el Load Balancer.
 En primer lugar, generamos el certificado a través de los comandos de SSL y lo cargamos en el servidor. El servidor web necesita estos documentos para poder firmar peticiones HTTPS.
 ![Generación de certificado](https://github.com/202306360/PracticasASR/assets/145692381/7e02c92b-8715-4a15-bbc1-719783e7a46b)
 ![Generación de certificado](https://github.com/202306360/PracticasASR/assets/145692381/72f7ee7f-5690-4bab-8839-8c6c00c454e2)
-
+ ![Imagen](C16.png)
+  ![Imagen](C17.png)
 #### 4.1-Configuración del balanceador L7:
 Una vez tenemos el certificado cargado, procedemos a crear el balanceador de L7. Configuramos el Frontend y el Backend, que se configura con un grupo de instancias que debemos crear previamente.
 
