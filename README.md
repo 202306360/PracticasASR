@@ -36,7 +36,7 @@ A continuación se incluyen las imágenes que muestran la configuración de las 
 
 Para permitir el acceso al jump-server desde nuestro pc hemos añadido la clave SSH en el "metadata" de Google Cloud. Una vez hecho esto y creadas las máquinas, ya podemos acceder al jump server desde nuestra consola de comandos. 
 
-<img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/1379a9bb-950d-4f70-874f-efb4e9fb2d3f">
+//<img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/1379a9bb-950d-4f70-874f-efb4e9fb2d3f">
  ![Imagen](C5.jpg)
   ![Imagen](C5.jpg)
 
@@ -50,8 +50,8 @@ Para permitir el acceso al jump-server desde nuestro pc hemos añadido la clave 
  ![Ultima regla firewall](C4p.png.jpg)
 
 
-
-
+En la linea 39
+//<img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/1379a9bb-950d-4f70-874f-efb4e9fb2d3f">
 
 
 
