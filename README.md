@@ -146,6 +146,8 @@ Ahora procedemos a configurar el WAF a través de las políticas de Cloud Armor:
  ![Imagen](C25.png)
 
 Las reglas instaladas son las siguientes:
+   1. Se habilita solo el tráfico procediente de España.
+   2. Se proteje la red de SQL injection y Cross Syte Scripting.
  ![Imagen](C26.png)
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Preguntas apartado 2:**
@@ -199,8 +201,8 @@ Otras posibles mejoras serían:
 
 1. Monitoreo y Registro Avanzados: Utiliza herramientas para observar lo que sucede en la nube,que nos pueda ayudar a detectar cualquier actividad extraña o problemas de seguridad y mantener un registro de lo que ocurre. Por ejemplo utilizando un software de seguridad o servicios en la nube que registren y analicen lo que sucede en la red. 
 
-Configuración de Backups y Restauración: Mantener copias de seguridad en caso de que ocurra cualquier problema. Se podrían programar copias periódicas y automáticas.
+2. Configuración de Backups y Restauración: Mantener copias de seguridad en caso de que ocurra cualquier problema. Se podrían programar copias periódicas y automáticas.
 
-Implementación de Seguridad a Nivel de Aplicación: Utilizando software antivirus y antimalware por ejemplo.
+3. Implementación de Seguridad a Nivel de Aplicación: Utilizando software antivirus y antimalware por ejemplo.
 
-Segmentación de Red Avanzada: Dividir la nube en distintas secciones para poder evitar que en caso de que una parte se dañe, también afecte al resto de la red.
+4. Segmentación de Red Avanzada: Dividir la nube en distintas secciones para poder evitar que en caso de que una parte se dañe, también afecte al resto de la red.
