@@ -147,7 +147,7 @@ Ahora procedemos a configurar el WAF a través de las políticas de Cloud Armor:
 
 Las reglas instaladas son las siguientes:
    1. Se habilita solo el tráfico procediente de España.
-   2. Se proteje la red de SQL injection y Cross Syte Scripting.
+   2. Se protege la red de SQL injection y Cross Syte Scripting.
  ![Imagen](C26.png)
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Preguntas apartado 2:**
