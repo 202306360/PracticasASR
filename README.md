@@ -4,21 +4,22 @@
 En esta solución crearemos una máquina de salto, a través de la cual podremos acceder al servidor. Además, limitaremos el acceso a ambas máquinas configurando una serie de reglas de Firewall de nivel 4.
 ### Pasos a seguir:
 1. Creamos la VPC Network "vpcp2" y le asignamos el rango de IP internas 10.0.0.0/27.
-   <img width="691" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/924c68a5-c575-4fe4-829f-28902c074ead">
+   ![Creacion de VPC](C1.png)
 
-2. Creamos las dos instancias de VM, por un lado, la que es el servidor y por otro la que es la máquina de salto.
+
+3. Creamos las dos instancias de VM, por un lado, la que es el servidor y por otro la que es la máquina de salto.
 Ambas máquinas tienen dirección IP privada dentro de la subnetwork y dirección IP pública.
 
 A continuación se incluyen las imágenes que muestran la configuración de las dos Máquinas virtuales, http-server y jump-server.
 
 ----------------------------------------------------------------------------------------------------------------------
 #### Máquina http-server:
-<img width="641" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/e0c0442c-d921-4d7b-850c-c41d2a74d664">
+  ![Creacion de http-server](C2.png)
 
 ----------------------------------------------------------------------------------------------------------------------
 #### Máquina jump-server:
-<img width="602" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/27365389-0a53-4b1e-a17f-6baaafe64d6e">
 
+ ![Creacion de jump-server](C3.png)
 ----------------------------------------------------------------------------------------------------------------------
 
 
@@ -29,7 +30,7 @@ A continuación se incluyen las imágenes que muestran la configuración de las 
    - 1. Se habilita el tráfico ssh desde la dirección IP de nuestro pc hasta el jump-server a través del puerto 22.
    - 2. Se habilita el tráfico interno, únicamente el tráfico TCP desde el jump-server al http-server.
 
-
+ ![Creacion de reglas de Firewall](C4.png)
 ![Reglas de Firewall](https://github.com/202306360/PracticasASR/assets/145692381/abacc4f3-7d9b-47e6-88fc-75d18f3be8ae)
 
 
