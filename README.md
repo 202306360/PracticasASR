@@ -37,8 +37,11 @@ A continuación se incluyen las imágenes que muestran la configuración de las 
 Para permitir el acceso al jump-server desde nuestro pc hemos añadido la clave SSH en el "metadata" de Google Cloud. Una vez hecho esto y creadas las máquinas, ya podemos acceder al jump server desde nuestra consola de comandos. 
 
 <img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/1379a9bb-950d-4f70-874f-efb4e9fb2d3f">
-<img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/6b30c5c8-1d24-445a-87d2-5f147cb05d4f">
+ ![Imagen](C5.jpg)
+  ![Imagen](C5.jpg)
 
+<img width="857" alt="image" src="https://github.com/202306360/PracticasASR/assets/145692381/6b30c5c8-1d24-445a-87d2-5f147cb05d4f">
+ ![Imagen](C6.png)
 5. Para comprobar el acceso desde la web, habilitamos una tercera regla de Firewall con origen la IP de nuestro pc y con destino la IP pública de la máquina http-sever. En este caso a través del protocolo TCP por el puerto 80.
 
    
@@ -64,14 +67,15 @@ En este caso, la máquina http-server solo tendrá dirección IP interna, mientr
 ### 1. CREACIÓN DE LA SUBNET Y MÁQUINAS VIRTUALES
 #### 1.1- Configuración de la subnet:
 ![Configuración de subnet](https://github.com/202306360/PracticasASR/assets/145692381/d2a439b1-07ba-4627-ac3b-9d4ed15d2bb8)
+ ![Imagen](C6.png)
 
 #### 1.2- Configuración de la máquina http-server:
 ![Máquina server](https://github.com/202306360/PracticasASR/assets/145692381/490c5498-73cd-4d4e-b02b-034613fe89b9)
-
+ ![Imagen](C8.png)
 #### 1.3- Configuración de la máquina jump-server:
 
 ![Máquina jump-server](https://github.com/202306360/PracticasASR/assets/145692381/e486cfef-19b0-42b4-9af6-d543366be0dd)
-
+ ![Imagen](C9.png)
 ### 2. CONFIGURACIÓN DE LAS REGLAS DE FIREWALL
 Para este apartado, mantendremos la misma configuración que en el ejercicio anterior, por lo que al firewall de la nueva subnet creada le aplicamos las siguientes reglas:
 
